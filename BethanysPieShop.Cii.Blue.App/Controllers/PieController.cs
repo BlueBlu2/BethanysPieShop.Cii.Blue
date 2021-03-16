@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace BethanysPieShop.Cii.Blue.App.Controllers
 {
     public class PieController : Controller
@@ -29,6 +30,15 @@ namespace BethanysPieShop.Cii.Blue.App.Controllers
 
             piesListViewModel.CurrentCategory = "Cheese cake";
             return View(piesListViewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var pie = _pieRepository.GetPieById(id);
+            if (pie == null)
+                return NotFound();
+            return View(pie);
+
         }
 
     }
